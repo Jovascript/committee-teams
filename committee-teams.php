@@ -215,7 +215,8 @@ function npseudo_committee_teams_blocks_init() {
 				'title',
 				'editor',
 				'thumbnail',
-				'custom-fields'
+				'custom-fields',
+				'page-attributes'
 			),
 			'template'            => array(
 				array(
