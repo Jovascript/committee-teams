@@ -21,7 +21,9 @@ export default function Edit({attributes, setAttributes}) {
 	const {records: committees, hasResolved: committeesLoaded} = __experimentalUseEntityRecords('taxonomy', 'npseudo_team');
 	const {records: committee, hasResolved: committeeLoaded} = __experimentalUseEntityRecords('postType', 'npseudo_com_member', {
 		'npseudo_team': committee_id,
-		_embed: 'wp:featuredmedia'
+		_embed: 'wp:featuredmedia',
+		'orderby': 'menu_order',
+		'order': 'asc',
 	});
 
 	const content = committeeLoaded ? (

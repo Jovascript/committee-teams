@@ -5,7 +5,7 @@
  * Description:       Add profiles for every member of committees.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           0.1.0
+ * Version:           0.2.2
  * Author:            Joe Bell
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -143,6 +143,8 @@ function npseudo_committee_teams_render_committee( $block_attributes, $content )
 				'terms'    => $block_attributes['committee_id'],
 			),
 		),
+		'orderby'=>'menu_order',
+		'order' => 'ASC',
 	) );
 	$str = '';
 	// The Loop
