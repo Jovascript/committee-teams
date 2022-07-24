@@ -1,0 +1,22 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "npseudo/committee-member",
+  "version": "0.1.0",
+  "title": "Committee Member",
+  "category": "widgets",
+  "icon": "businessperson",
+  "description": "A block which displays a committee member.",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "member_id": {
+      "type": "integer"
+    }
+  },
+  "textdomain": "committee-teams",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}

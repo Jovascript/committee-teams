@@ -1,0 +1,37 @@
+@mixin card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid currentColor;
+
+  img {
+	width: 100%;
+	object-fit: cover;
+  }
+
+  .npseudo-card-body {
+	flex: 1 1 auto;
+	padding: 8px;
+  }
+
+  h5, h6 {
+	margin-bottom: 4px;
+	margin-top: 0;
+	text-transform: initial !important;
+  }
+  h5 {
+	font-weight: 500;
+	display: inline-block;
+  }
+  .npseudo-pronouns {
+	font-weight: lighter;
+	margin-left: 0.5rem;
+  }
+
+  .npseudo-member-bio {
+	font-size: 0.875rem;
+  }
+  a + a {
+	margin-left: 1rem;
+  }
+}

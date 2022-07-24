@@ -1,0 +1,24 @@
+@import "../card";
+
+.npseudo-card {
+  	@include card;
+}
+
+.wp-block-npseudo-committee {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+
+	@media(max-width: 576px) {
+	  display: block;
+	}
+}
+
+.wp-block-npseudo-committee>div {
+  margin-bottom: 8px;
+  flex: 0 0 32%;
+
+  @media(max-width: 768px) {
+	flex: 0 0 48%;
+  }
+}
