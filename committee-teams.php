@@ -5,7 +5,7 @@
  * Description:       Add profiles for every member of committees.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           0.2.2
+ * Version:           0.2.4
  * Author:            Joe Bell
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -14,7 +14,7 @@
  * @package           NpseudoCommitteeTeams
  */
 
-
+const NPSEUDO_VERSION = '0.2.4';
 const NPSEUDO_POST_TYPE_NAME  = 'npseudo_com_member';
 const NPSEUDO_TEAM_CAT_NAME   = 'npseudo_team';
 const NPSEUDO_TDOMAIN         = 'committee_teams';
@@ -60,20 +60,6 @@ function npseudo_committee_teams_register_meta() {
 	) );
 }
 
-function npseudo_get_enabling_script() {
-	return "<script>
-const npseudo_h = document.querySelectorAll('[data-more-info]');
-Array.prototype.forEach.call(npseudo_h, h => {
-  let t = h.nextElementSibling;
-  h.onclick = (e) => {
-    let ex = h.getAttribute('aria-expanded') === 'true' || false;
-    h.setAttribute('aria-expanded', !ex);
-    t.hidden = ex;
-    e.preventDefault();
-  }
-})</script>";
-}
-
 function npseudo_render_member_content( $member_attrs ) {
 	$str = '';
 	if ( isset( $member_attrs['thumb'] ) ) {
@@ -104,6 +90,7 @@ function npseudo_render_member_content( $member_attrs ) {
 }
 
 function npseudo_committee_teams_render_member( $block_attributes, $content ) {
+	wp_enqueue_script('npseudo_member_script', plugins_url( 'public/js/info-toggle.js', __FILE__), array(), '1.0.0', true);
 	if ( $block_attributes['member_id'] <= 0 ) {
 		return '';
 	}
@@ -129,10 +116,11 @@ function npseudo_committee_teams_render_member( $block_attributes, $content ) {
 		$member_attrs['thumb'] = get_the_post_thumbnail( $post, 'medium' );
 	}
 
-	return sprintf( '<div %s>%s</div>%s', get_block_wrapper_attributes(), npseudo_render_member_content( $member_attrs ), npseudo_get_enabling_script() );
+	return sprintf( '<div %s>%s</div>', get_block_wrapper_attributes(), npseudo_render_member_content( $member_attrs ));
 }
 
 function npseudo_committee_teams_render_committee( $block_attributes, $content ) {
+	wp_enqueue_script('npseudo_member_script', plugins_url( 'public/js/info-toggle.js', __FILE__), array(), '1.0.1', true);
 	global $post;
 	$the_query = new WP_Query( array(
 		'post_type' => NPSEUDO_POST_TYPE_NAME,
@@ -171,7 +159,7 @@ function npseudo_committee_teams_render_committee( $block_attributes, $content )
 			}
 			$str .= sprintf('<div class="npseudo-card">%s</div>', npseudo_render_member_content($member_attrs));
 		}
-		$str .= '</div>' . npseudo_get_enabling_script();
+		$str .= '</div>';
 	} else {
 		$str = '<p>No Committee Members Found.</p>';
 	}

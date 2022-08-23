@@ -1,6 +1,6 @@
 {
 	"name": "committee-teams",
-	"version": "0.2.2",
+	"version": "0.2.4",
 	"description": "Plugin to enable display of committees and their members.",
 	"author": "The WordPress Contributors, Joe",
 	"license": "GPL-2.0-or-later",
