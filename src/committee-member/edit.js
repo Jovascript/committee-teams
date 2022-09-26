@@ -19,7 +19,7 @@ import {Member, PersonIcon} from "../common";
 function MemberSelect({onSelect}) {
 	const {members, hasResolved} = useSelect(
 		(select) => {
-			const selectorArgs = ['postType', 'npseudo_com_member'];
+			const selectorArgs = ['postType', 'npseudo_com_member', { per_page: 50 }];
 			return {
 				members: select(coreDataStore).getEntityRecords(
 					...selectorArgs
