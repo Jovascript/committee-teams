@@ -60,7 +60,7 @@ function RawMember({member, children, ...props}, ref) {
 				<h6>{member.meta.position}</h6>
 				{member.meta.member_email && <a href={"mailto:" + member.meta.member_email}>Email Me</a>}
 				{hasAttachment && <a href={member.meta.attachment.url}>Manifesto</a>}
-				<MoreInfoItem id={member.id}><div  dangerouslySetInnerHTML={{ __html: member.content.rendered.trim()}}/></MoreInfoItem>
+				{member.content.rendered.replace(/(<([^>]+)>)/gi, "").trim() && <MoreInfoItem id={member.id}><div  dangerouslySetInnerHTML={{ __html: member.content.rendered.trim()}}/></MoreInfoItem>}
 			</div>
 		</div>
 	);

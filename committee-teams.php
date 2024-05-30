@@ -5,7 +5,7 @@
  * Description:       Add profiles for every member of committees.
  * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           0.2.5
+ * Version:           0.2.6
  * Author:            Joe Bell
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -14,7 +14,7 @@
  * @package           NpseudoCommitteeTeams
  */
 
-const NPSEUDO_VERSION = '0.2.5';
+const NPSEUDO_VERSION = '0.2.6';
 const NPSEUDO_POST_TYPE_NAME  = 'npseudo_com_member';
 const NPSEUDO_TEAM_CAT_NAME   = 'npseudo_team';
 const NPSEUDO_TDOMAIN         = 'committee_teams';
@@ -81,8 +81,10 @@ function npseudo_render_member_content( $member_attrs ) {
 		$str .= sprintf( '<a href="%s">Manifesto</a>', $member_attrs['manifesto'] );
 	}
 
-	$str .= sprintf( '<a href="#" id="npseudo-info-toggle-%1$d" role="button" aria-expanded="false" aria-controls="npseudo-info-%1$d" data-more-info>More Info</a><section class="npseudo-member-bio" id="npseudo-info-%1$d" aria-labelledby="npseudo-info-toggle-%1$d" hidden>%2$s</section>',
-		$member_attrs['ID'], $member_attrs['content'] );
+	if (trim(strip_tags($member_attrs['content'])) != '') {
+		$str .= sprintf( '<a href="#" id="npseudo-info-toggle-%1$d" role="button" aria-expanded="false" aria-controls="npseudo-info-%1$d" data-more-info>More Info</a><section class="npseudo-member-bio" id="npseudo-info-%1$d" aria-labelledby="npseudo-info-toggle-%1$d" hidden>%2$s</section>',
+			$member_attrs['ID'], $member_attrs['content'] );
+	}
 
 	$str .= '</div>';
 
